@@ -24,6 +24,7 @@ RUN wget https://apache.osuosl.org/tomcat/tomcat-9/v9.0.40/bin/apache-tomcat-9.0
 RUN tar -xf apache-tomcat-9.0.40.tar.gz
 RUN rm apache-tomcat*.tar.gz
 RUN mv apache-tomcat-9.0.40 /opt/tomcat/
+RUN ls /opt/tomcat/bin
 RUN chmod +x ${CATALINA_HOME}/bin/*sh
 # Create Tomcat admin user
 #ADD create_admin_user.sh $CATALINA_HOME/scripts/create_admin_user.sh
@@ -35,9 +36,6 @@ RUN chmod +x ${CATALINA_HOME}/bin/*sh
 # chown -R tomcat:tomcat ${CATALINA_HOME}
 WORKDIR ${CATALINA_HOME}/bin
 EXPOSE 8080
-RUN pwd
-RUN ls -lrt
-RUN ls /opt/tomcat/bin
 COPY /opt/tomcat/bin/startup.sh /opt/startup.sh
 RUN chmod +x /opt/startup.sh
 ENTRYPOINT /opt/startup.sh

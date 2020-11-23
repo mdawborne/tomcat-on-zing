@@ -33,7 +33,7 @@ RUN chmod +x ${CATALINA_HOME}/bin/*sh
 #RUN groupadd -r tomcat && \
 # useradd -g tomcat -d ${CATALINA_HOME} -s /sbin/nologin  -c "Tomcat user" tomcat && \
 # chown -R tomcat:tomcat ${CATALINA_HOME}
-WORKDIR /opt/tomcat/bin
+WORKDIR ${CATALINA_HOME}/bin
 EXPOSE 8080
 COPY startup.sh /opt/startup.sh
 RUN chmod +x /opt/startup.sh

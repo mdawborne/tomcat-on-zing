@@ -36,8 +36,9 @@ RUN chmod +x ${CATALINA_HOME}/bin/*sh
 # chown -R tomcat:tomcat ${CATALINA_HOME}
 WORKDIR ${CATALINA_HOME}/bin
 EXPOSE 8080
-COPY /opt/tomcat/bin/startup.sh /opt/startup.sh
-RUN chmod +x /opt/startup.sh
+#COPY /opt/tomcat/bin/startup.sh /opt/startup.sh
+RUN ln -s /opt/tomcat/bin/startup.sh /opt/startup.sh
+#RUN chmod +x /opt/startup.sh
 ENTRYPOINT /opt/startup.sh
 WORKDIR $CATALINA_HOME
 #CMD ["tomcat.sh"]

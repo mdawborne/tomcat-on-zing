@@ -38,7 +38,7 @@ EXPOSE 8080
 RUN pwd
 RUN ls -lrt
 RUN ls /opt/tomcat/bin
-COPY startup.sh /opt/startup.sh
+COPY /opt/tomcat/bin/startup.sh /opt/startup.sh
 RUN chmod +x /opt/startup.sh
 ENTRYPOINT /opt/startup.sh
 WORKDIR $CATALINA_HOME

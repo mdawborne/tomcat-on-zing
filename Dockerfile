@@ -7,7 +7,7 @@ RUN yum -y update && \
  yum -y install tar
 RUN rpm --import https://repos.azul.com/azul-repo.key
 RUN curl -o /etc/yum.repos.d/zing.repo https://repos.azul.com/zing/rhel/zing.repo
-RUN yum install zing-jdk11.0.0
+RUN yum -y install zing-jdk11.0.0
 WORKDIR /opt/zing
 RUN alternatives --install /usr/bin/java java /opt/zing/bin/java 1
 RUN alternatives --install /usr/bin/jar jar /opt/zing/bin/jar 1

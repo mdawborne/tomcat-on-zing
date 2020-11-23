@@ -20,10 +20,10 @@ ENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin:$CATALINA_HOME/scripts
 # Install Tomcat
 ENV TOMCAT_MAJOR 9
 ENV TOMCAT_VERSION 9.0.39
-RUN wget https://pub.tutosfaciles48.fr/mirrors/apache/tomcat/tomcat-9/v9.0.39/bin/apache-tomcat-9.0.39.tar.gz && \
- tar -xf apache-tomcat-9.0.39.tar.gz && \
- rm apache-tomcat*.tar.gz && \
- mv apache-tomcat-9.0.39 /opt/tomcat/
+RUN wget https://apache.osuosl.org/tomcat/tomcat-9/v9.0.40/bin/apache-tomcat-9.0.40.tar.gz
+RUN tar -xf apache-tomcat-9.0.40.tar.gz
+RUN rm apache-tomcat*.tar.gz
+RUN mv apache-tomcat-9.0.40 /opt/tomcat/
 RUN chmod +x ${CATALINA_HOME}/bin/*sh
 # Create Tomcat admin user
 #ADD create_admin_user.sh $CATALINA_HOME/scripts/create_admin_user.sh

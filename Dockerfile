@@ -1,16 +1,13 @@
 # Centos based container with Java and Tomcat
 FROM centos:centos7
-LABEL maintainer="cgeorge@azul.com"
+LABEL maintainer="mdawborne@azul.com"
 # Install prepare infrastructure
 RUN yum -y update && \
  yum -y install wget && \
  yum -y install tar
-#RUN yum localinstall –-nogpgcheck zing20.08.101.0-1-jdk11.0.8.101-linux.x86_64.rpm
-#WORKDIR /opt
-#Note that ADD uncompresses this tarball automatically
-COPY zing20.10.0.0-6-sa-jdk8.0.271-linux_x64.tar.gz /opt
-RUN tar -xf /opt/zing20.10.0.0-6-sa-jdk8.0.271-linux_x64.tar.gz
-RUN mv zing20.10.0.0-6-sa-jdk8.0.271-linux_x64 /opt/zing/
+RUN rpm --import https://repos.azul.com/azul-repo.key
+RUN curl -o /etc/yum.repos.d/zing.repo https://repos.azul.com/zing/rhel/zing.repo
+RUN yum install zing-jdk11.0.0
 WORKDIR /opt/zing
 RUN alternatives --install /usr/bin/java java /opt/zing/bin/java 1
 RUN alternatives --install /usr/bin/jar jar /opt/zing/bin/jar 1
@@ -18,7 +15,6 @@ RUN alternatives --install /usr/bin/javac javac /opt/zing/bin/javac 1
 RUN echo "JAVA_HOME=/opt/zing" >> /etc/environment
 # Prepare environment
 ENV JAVA_HOME /opt/zing
-#ENV JAVA_HOME /opt/zing/zing-jdk8
 ENV CATALINA_HOME /opt/tomcat
 ENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin:$CATALINA_HOME/scripts
 # Install Tomcat

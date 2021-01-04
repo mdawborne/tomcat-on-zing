@@ -26,7 +26,7 @@ RUN alternatives --install /usr/bin/jar jar /opt/zing/bin/jar 1
 RUN alternatives --install /usr/bin/javac javac /opt/zing/bin/javac 1
 RUN echo "JAVA_HOME=/opt/zing" >> /etc/environment
 # Instead of passing the license as a parameter, you can save it in same directory as Dockfile
-#ADD ./license /etc/zing/
+ADD ./license /etc/zing/
 ENV CATALINA_HOME /opt/tomcat
 ENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin:$CATALINA_HOME/scripts
 # Install Tomcat
